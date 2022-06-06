@@ -468,35 +468,6 @@ public:
         return _size;
     }
 
-    friend std::ostream& operator<<(std::ostream& stream, const BinarySearchTree& bst) {
-        std::deque<Node*> queue;
-        Node* node;
-        queue.push_back(bst._root);
-        size_t rowCount = 1;
-        bool running = true;
-        while (running) {
-            running = false;
-            for (size_t i = 0; i < rowCount; i++) {
-                node = queue.front();
-                queue.pop_front();
-                if (node != nullptr) {
-                    running = true;
-                    stream << node->keyValuePair.first << ":" << node->keyValuePair.second << " ";
-                    queue.push_back(node->left);
-                    queue.push_back(node->right);
-                }
-                else {
-                    queue.push_back(nullptr);
-                    queue.push_back(nullptr);
-                    stream << "NULL ";
-                }
-            }
-            stream << '\n';
-            rowCount *= 2;
-        }
-        return stream;
-    }
-
 private:
     std::size_t _size = 0;
     Node* _root = nullptr; //!< корневой узел дерева
